@@ -1,6 +1,9 @@
 """Load one landing-zone extract into the warehouse.
 
     python -m pipeline.load --db warehouse.duckdb --file data/landing/daily/events_2026-03-28.csv
+
+The database must keep files already loaded. Calling this again with the same
+file replaces that file's contribution; it does not append a second copy.
 """
 
 import argparse

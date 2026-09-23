@@ -1,8 +1,8 @@
-"""Build model tables from fct_events, then run data quality checks.
+"""Build user_daily_activity from fct_events, then run data quality checks.
 
     python -m pipeline.build --db warehouse.duckdb
 
-Exits non-zero if a data quality check fails.
+Exit 0 on the files in this repo. Exit non-zero when a check fails.
 """
 
 import argparse

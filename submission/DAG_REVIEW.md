@@ -1,5 +1,7 @@
 # DAG review: `dags/daily_events_dag.py`
 
-Rank the issues from most to least harmful in production. For each one, say what goes wrong and what you'd change.
+Issues you would block the PR for, most harmful in production first. Skip style nits.
 
-1.
+1. **Title**
+   - Breaks:
+   - Change:

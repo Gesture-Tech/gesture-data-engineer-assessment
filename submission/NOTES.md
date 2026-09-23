@@ -2,22 +2,32 @@
 
 ## Data issues found
 
+One row per issue. Counts, not impressions.
+
 | Issue | How you found it | Rows affected | Decision (and why) |
 | ----- | ---------------- | ------------- | ------------------ |
 |       |                  |               |                    |
 
 ## Key design decisions
 
-How do you dedupe, pick between versions of an event, and stay idempotent? Which assumptions did you make?
+- Dedupe: how do you get one row per `event_id`, including across files?
+- Tie-break: what happens when two copies are equally new?
+- Idempotency: what do you store so loading a file again is a no-op?
+- Assumptions: time zone, types, and what "rejected" means.
 
 ## Moving this to BigQuery (≤150 words)
 
-The history table is now 2B rows and grows by 20M a day. How would you design `fct_events` and `user_daily_activity` (partitioning, clustering, load or merge strategy, incremental rebuilds), and what would it cost to get this wrong?
+`fct_events` is 2B rows and grows by 20M a day. Cover four points:
+
+- How you partition and cluster `fct_events`
+- How a daily load merges without duplicating rows on retry
+- How you refresh `user_daily_activity` when a file contains events for older dates
+- What it costs if you get the above wrong
 
 ## What I'd do next
 
-What you didn't get to, in priority order.
+What you did not get to, in priority order.
 
 ## AI usage
 
-Which tools did you use, and for what? What did you check, correct, or throw away?
+Which tools, and for what? What did you check, correct, or throw away?
